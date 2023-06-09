@@ -8,9 +8,7 @@ public class MapDemo {
         map.put("itheima002","张三");
         map.put("itheima003","张三");
         System.out.println(map);
-        System.out.println(map.remove("itheima001"));
-        System.out.println(map.remove("itheima004"));
-        map.clear();
+
     }
 
 }
