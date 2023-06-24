@@ -25,7 +25,6 @@ public class BufferedDemo03 {
         System.out.println("-----------------");
         String s3="中国";
         //[-42, -48, -71, -6]
-
         byte[] bys3=s3.getBytes("GBK");
 
         System.out.println(Arrays.toString(bys3));
