@@ -7,10 +7,10 @@ import java.io.*;
  */
 public class ConversionStreamDemo {
     public static void main(String[] args) throws IOException {
-        OutputStreamWriter ows=new OutputStreamWriter(new FileOutputStream("D:\\myStream\\osw.txt"),"UTF-8");
+        OutputStreamWriter ows=new OutputStreamWriter(new FileOutputStream("D:\\myStream\\osw.txt"),"GBK");
         ows.write("中国");
         ows.close();
-        InputStreamReader isr=new InputStreamReader(new FileInputStream("D:\\myStream\\osw.txt"),"UTF-8");
+        InputStreamReader isr=new InputStreamReader(new FileInputStream("D:\\myStream\\osw.txt"),"GBK");
         int ch;
         while((ch=isr.read())!=-1)
         {
