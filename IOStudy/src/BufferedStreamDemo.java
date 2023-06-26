@@ -16,10 +16,19 @@ public class BufferedStreamDemo {
 
       */
         BufferedReader br=new BufferedReader(new FileReader("D:\\myStream\\bw.txt"));
-        int ch;
+        /*int ch;
         while((ch=br.read())!=-1)
         {
             System.out.print((char)ch);
         }
+
+         */
+        char [] chs=new char[1024];
+        int len;
+        while((len=br.read(chs))!=-1)
+        {
+            System.out.println(new String(chs,0,len));
+        }
+        br.close();
     }
 }
