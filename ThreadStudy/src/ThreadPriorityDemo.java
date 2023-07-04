@@ -16,17 +16,22 @@ public class ThreadPriorityDemo {
         System.out.println(tp3.getPriority());   //5
 
        */
+      // tp1.setPriority(10000);错误IllegalArgumentException表示优先级不在MIN_PRIORITY到MAX_PRIORITY范围内
       /* System.out.println(Thread.MAX_PRIORITY); //10
         System.out.println(Thread.MIN_PRIORITY);  //1
         System.out.println(Thread.NORM_PRIORITY);    //5
 
        */
-        tp1.setPriority(5);
+
+
+       tp1.setPriority(5);
         tp2.setPriority(10);
         tp3.setPriority(1);
         tp1.start();
         tp2.start();
         tp3.start();
+
+
 
 
 
