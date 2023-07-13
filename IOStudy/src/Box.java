@@ -7,7 +7,7 @@ public class Box {
     private int milk;
     private boolean state=false;
 
-    public void put(int milk) throws InterruptedException {
+    public synchronized void put(int milk) throws InterruptedException {
         if(state)
         {
             wait();
@@ -15,8 +15,10 @@ public class Box {
         this.milk=milk;
         System.out.println("送奶工将第"+this.milk+"瓶奶放入奶瓶");
         state=true;
+        notifyAll();
+
     }
-    public void get()
+    public  synchronized void get()
     {  if(!state)
     {
         try {
@@ -27,5 +29,6 @@ public class Box {
     }
         System.out.println("用户拿到第"+this.milk+"瓶奶");
         state=false;
+        notifyAll();
     }
 }

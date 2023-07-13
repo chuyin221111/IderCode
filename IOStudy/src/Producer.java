@@ -13,7 +13,11 @@ public class Producer implements Runnable{
     {
         for(int i=0;i<=5;i++)
         {
-            b.put(i);
+            try {
+                b.put(i);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
