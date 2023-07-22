@@ -7,6 +7,7 @@ public class AddableDemo {
     public static void main(String[] args) {
         useAddable((int x,int y)->{
 
+            return x;
         });
     }
     private static void useAddable(Addable a)
