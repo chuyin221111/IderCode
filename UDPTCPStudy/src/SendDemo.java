@@ -25,8 +25,12 @@ public class SendDemo {
         //DatagramPacket(byte[] buf,int length,InetAddress address, int port)
         //构造一个数据包，发送长度为length的数据包到指定主机上的指定端口号
         byte[] bys="hello,udp,我来了".getBytes();
-        DatagramPacket dp=new DatagramPacket(bys,bys.length, InetAddress.getByName("192.168.0.3"),10086);
+        DatagramPacket dp=new DatagramPacket(bys,bys.length, InetAddress.getByName("192.168.0.7"),10086);
+       //调用DatagramSocket对象的方法发送数据
+        // void send(DatagramPacket p)  从此套接字发送数据包
         ds.send(dp);
+        //关闭发送端
+        //void close（）关闭此数据报套接字
         ds.close();
     }
 }
