@@ -4,6 +4,7 @@
  * @project java SE
  */
 
+import java.util.Random;
 import java.util.Scanner;
 
 /**     a23dBCD
@@ -42,8 +43,11 @@ public class Passwordmanage {
 					Jucry();break;
 				case 4:
 					Gecry();break;
-				default:
+				case 5:
 					flag=false;
+				default:
+					System.out.println("输入错误，请重新选择");
+
 			}
 		}while(flag);
     }
@@ -54,59 +58,216 @@ public class Passwordmanage {
 		System.out.println("-------------------");
 		System.out.println("      请选择    ");
 		System.out.println("     1.加密");
-		System.out.println("     2.判断密码强度");
-		System.out.println("     3.密码生成");
+		System.out.println("     2.解密");
+		System.out.println("     3.判断密码强度");
 		System.out.println("     4.密码生成");
 		System.out.println("     5.退出");
 		System.out.println("--------------------");
 		System.out.print("你选择的序号为：");
 	}
-	public static char[] Encryption() {
+	public static void Encryption() {
 		char temp,key;
+		int sum=0;
 		System.out.print("请输入你要加密的密码：");
 		Scanner scanner = new Scanner(System.in);
 		String ps = scanner.nextLine();
 		char[] password = ps.toCharArray();
-		for (int i = 0; i < password.length; i++)
+		for(int y=0;y<password.length;y++)
 		{
-			password[i]= (char) (password[i]+i+1+3);
+			if (password[y] < '0' && password[y] > '9' && password[y] < 'A' && password[y] > 'Z' &&password[y] < 'a' && password[y] > 'z')
+			{
+				sum++;
+			}
 		}
-		temp=password[0];
-		password[0]=password[password.length-1];
-		password[password.length-1]=temp;
-		int j=password.length-1;
-		for(int k=0;j>=k;j--,k++)
+		if(sum>0)
 		{
-			key=password[k];
-			password[k]=password[j];
-			password[j]=key;
+			System.out.println("输入非法字符，输入错误");
 		}
-		System.out.println("加密后：");
-		for(int h=0;h<password.length;h++)
+		else if(password.length>16)
 		{
-			System.out.print(password[h]);
+			System.out.println("输入长度超过16位,输入错误");
 		}
-		System.out.println();
-		return password;
+		else{
+			for (int i = 0; i < password.length; i++)
+			{
+				password[i]= (char) (password[i]+i+1+3);
+			}
+			temp=password[0];
+			password[0]=password[password.length-1];
+			password[password.length-1]=temp;
+			int j=password.length-1;
+			for(int k=0;j>=k;j--,k++)
+			{
+				key=password[k];
+				password[k]=password[j];
+				password[j]=key;
+			}
+			System.out.print("加密后：");
+			for(int h=0;h<password.length;h++)
+			{
+				System.out.print(password[h]);
+			}
+			System.out.println();
+		}
+
+
 	}
 	public static void Decry()
 	{
+		char temp,key;
+		int sum=0;
 		System.out.print("请输入你要解密的密码：");
 		Scanner scanner = new Scanner(System.in);
 		String ps = scanner.nextLine();
 		char[] password = ps.toCharArray();
-		int j=password.length-1;
-		for(int k=0;j>=k;j--,k++)
+		for(int y=0;y<password.length;y++)
 		{
-
+			if (password[y] < '0' && password[y] > '9' && password[y] < 'A' && password[y] > 'Z' &&password[y] < 'a' && password[y] > 'z')
+			{
+				sum++;
+			}
 		}
+		if(sum>0)
+		{
+			System.out.println("输入非法字符，输入错误");
+		}
+		else if(password.length>16)
+		{
+			System.out.println("输入长度超过16位,输入错误");
+		}
+		else{
+			int j=password.length-2;
+			for(int k=1;j>=k;j--,k++)
+			{
+				key=password[k];
+				password[k]=password[j];
+				password[j]=key;
+			}
+			for(int i=0;i<password.length;i++)
+			{
+				password[i]=(char)(password[i]-i-1-3);
+			}
+			System.out.print("解密后：");
+			for(int h=0;h<password.length;h++)
+			{
+				System.out.print(password[h]);
+			}
+			System.out.println();
+		}
+
 	}
 	public static void Jucry()
 	{
+		int num=0,d=0,x=0;
+		int sum=0;
+		System.out.print("请输入你的密码：");
+		Scanner scanner = new Scanner(System.in);
+		String ps = scanner.nextLine();
+		char[] password = ps.toCharArray();
+		for(int y=0;y<password.length;y++)
+		{
+			if (password[y] < '0' && password[y] > '9' && password[y] < 'A' && password[y] > 'Z' &&password[y] < 'a' && password[y] > 'z')
+			{
+				sum++;
+			}
+		}
+		if(sum>0)
+		{
+			System.out.println("输入非法字符，输入错误");
+		}
+		else if(password.length>16)
+		{
+			System.out.println("输入长度超过16位,输入错误");
+		}
+		else {
+			if(password.length<8)
+			{
+				System.out.println("该密码是为弱强度");
+			}
+			else if(password.length>=8)
+			{
+				for(int i=0;i<password.length;i++)
+				{
+					if(password[i]>='0'&&password[i]<='9')
+					{
+						num++;
+					}
+					if(password[i]>='A'&&password[i]<='Z')
+					{
+						d++;
+					}
+					if(password[i]>='a'&&password[i]<='z')
+					{
+						x++;
+					}
+				}
+
+				if(num>0&&d==0&&x==0)
+				{
+					System.out.println("该密码为弱强度");
+				}
+				else if(num==0&&(d>0||x>0))
+				{
+					System.out.println("该密码强度为弱强度");
+				}
+				else if((num>0&&d>0&&x==0)||(num>0&&d==0&&x>0))
+				{
+					System.out.println("该密码强度为中强度");
+				}
+				else if(num>0&&d>0&&x>0)
+				{
+					System.out.println("该强度为高强度");
+				}
+			}
+		}
 
 	}
 	public static void Gecry()
 	{
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("请输入你所要的密码长度：");
+		int index=scanner.nextInt();
+		StringBuilder sb=new StringBuilder();
+		Random random=new Random();
+		System.out.println("密码生成，你的密码如下：");
+		for(int i=0;i<index;i++)
+		{
+			switch(random.nextInt(3))
+			{
+				case 0:
+					char ranLowLetter=(char)((random.nextInt(26)+97));
+					System.out.print(ranLowLetter);
+					break;
+				case 1:
+					char ranUpLetter=(char)((random.nextInt(26)+65));
+					System.out.print(ranUpLetter);
+					break;
+				case 2:
+					int ranNumOut=random.nextInt(10);
+					System.out.print(ranNumOut);
+					break;
+			}
 
+		}
+		System.out.println();
 	}
+	/**public static void  Errohand(char[]*password)
+	{
+		if(password.length>16)
+		{
+			System.out.println("该输入长度大于16，符合要求");
+		}
+		else {
+			for(int n=0;n<password.length;n++)
+			{
+				if(password[n]<'0'||password[n]>'9'||password[n]<'A'||password[n]>'Z'||password[n]<'a'||password[n]>'z')
+				{
+					System.out.println("输入不符合规范，有其他字符");
+					break;
+				}
+			}
+	}
+
+	 */
+
 }
